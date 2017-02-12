@@ -1,7 +1,12 @@
 from appJar import gui
 
 def buttonCallback(buttonName):
+	global appGui
 	print(buttonName)
+	if buttonName == "teema4_100":
+		appGui.infoBox("Question", "When did Britney Spears release \"Oops, I did it again?\"")
+		appGui.setButtonState("teema4_100", "disabled")
+
 
 def setupGui():
 	global appGui  
@@ -19,7 +24,6 @@ def setupGui():
 	appGui.addNamedButton("100", "teema1_100", buttonCallback, 2, 0)
 	appGui.setButtonBg("teema1_100", "yellow")
 	appGui.setButtonActiveBg("teema1_100", "yellow")
-	appGui.setButtonDisabledBg("teema1_100", "yellow")
 	appGui.setButtonInactiveBg("teema1_100", "yellow")
 
 	appGui.addNamedButton("200", "teema1_200", buttonCallback, 3, 0)
@@ -40,6 +44,7 @@ def setupGui():
 	appGui.addNamedButton("500", "teema3_500", buttonCallback, 6, 2)
 
 	appGui.addNamedButton("100", "teema4_100", buttonCallback, 2, 3)
+	appGui.setButtonDisabledBg("teema4_100", "yellow")
 	appGui.addNamedButton("200", "teema4_200", buttonCallback, 3, 3)
 	appGui.addNamedButton("300", "teema4_300", buttonCallback, 4, 3)
 	appGui.addNamedButton("400", "teema4_400", buttonCallback, 5, 3)
