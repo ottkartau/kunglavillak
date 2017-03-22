@@ -1,4 +1,9 @@
 from appJar import gui
+import threading
+
+
+
+
 
 
 def buttonCallback(buttonName):
@@ -87,7 +92,9 @@ def buttonCallback(buttonName):
         questions.close()
 
 def setupGui():
-        global appGui  
+        global appGui
+
+        
         appGui.addStatusbar(fields = 2)
         appGui.setStatusbarBg("gray", 0)
         appGui.setStatusbarFg("black", 0)
@@ -130,8 +137,31 @@ def setupGui():
         appGui.setTitle("Villak")       
         appGui.setTransparency(98)
         appGui.setButtonFont(20, "Arial")
+
+def one_minute():
+        appGui.infoBox("1 minut", "Mänguosa lõpuni on jäänud 1 minut!")
+        print("1 minut")
+
+def stop():
+        appGui.infoBox("lõpp", "Mänguosa on lõppenud!")
+        print("lõpp")
+        appGui.removeAllWidgets()
         
         
+
+
+minute = threading.Timer(240, one_minute)
+end = threading.Timer(300, stop)
+
+minute.start()
+end.start()
 appGui = gui()
 setupGui()
 appGui.go()
+
+
+
+
+
+
+
