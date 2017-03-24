@@ -1,13 +1,22 @@
 from appJar import gui
 import threading
+import random
 
-
+def hõbevillak():
+        random_teema = random.choice(["teema1_", "teema2_", "teema3_", "teema4_", "teema5_"])
+        random_punktid = random.choice(["100", "200", "300", "400"])
+        boonusruut = str(random_teema + random_punktid)
+        print (boonusruut)
 
 
 
 
 def buttonCallback(buttonName):
         print(buttonName)
+
+        if buttonName == "boonusruut" :
+                appGui.removeButton("boonusruut")
+                appGui.infoBox("Hõbevillak", "Mis on teie panus?")
         questions = open("kysimused.txt", "r")
         if buttonName == "teema1_100":
                 appGui.removeButton("teema1_100")
@@ -94,7 +103,9 @@ def buttonCallback(buttonName):
 def setupGui():
         global appGui
 
-        
+        appGui.setPadX(1)
+        appGui.setPadY()
+
         appGui.addStatusbar(fields = 2)
         appGui.setStatusbarBg("gray", 0)
         appGui.setStatusbarFg("black", 0)
@@ -146,6 +157,7 @@ def stop():
         appGui.infoBox("lõpp", "Mänguosa on lõppenud!")
         print("lõpp")
         appGui.removeAllWidgets()
+        appGui.addNamedButton("hõbevillak","Hõbevillak")
         
         
 
@@ -153,6 +165,7 @@ def stop():
 minute = threading.Timer(240, one_minute)
 end = threading.Timer(300, stop)
 
+hõbevillak()
 minute.start()
 end.start()
 appGui = gui()
