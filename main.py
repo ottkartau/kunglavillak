@@ -3,20 +3,23 @@ import threading
 import random
 
 def hõbevillak():
+        global boonusruut
         random_teema = random.choice(["teema1_", "teema2_", "teema3_", "teema4_", "teema5_"])
         random_punktid = random.choice(["100", "200", "300", "400"])
         boonusruut = str(random_teema + random_punktid)
-        print (boonusruut)
+        print ("hõbevillak on: " + boonusruut)
 
 
 
 
 def buttonCallback(buttonName):
+        global boonusruut
         print(buttonName)
 
-        if buttonName == "boonusruut" :
-                appGui.removeButton("boonusruut")
-                appGui.infoBox("Hõbevillak", "Mis on teie panus?")
+        if buttonName == boonusruut :
+                appGui.removeButton(boonusruut)
+                appGui.infoBox("HÕBEVILLAK", "Mis on teie panus?")
+                
         questions = open("kysimused.txt", "r")
         if buttonName == "teema1_100":
                 appGui.removeButton("teema1_100")
@@ -157,7 +160,7 @@ def stop():
         appGui.infoBox("lõpp", "Mänguosa on lõppenud!")
         print("lõpp")
         appGui.removeAllWidgets()
-        appGui.addNamedButton("hõbevillak","Hõbevillak")
+
         
         
 
